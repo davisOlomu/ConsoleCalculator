@@ -3,7 +3,10 @@ using static ConsoleCalculator.Calculations;
 
 namespace ConsoleCalculator
 {
-    public class CalculatorDisplay
+    /// <summary>
+    /// UserInterface.
+    /// </summary>
+    public class Display
     {
         public static void Main()
         {
@@ -11,18 +14,18 @@ namespace ConsoleCalculator
             Console.SetWindowSize(45, 25);
 
             Console.Write("Enter first operand and press enter: ");
-            double firstOperand = UserInputValidation.ValidateOperand();
+            double firstOperand = Validations.ValidateOperand();
             Console.Clear();
 
             Console.Write("Enter operator: ");
-            ConsoleKeyInfo @operator = UserInputValidation.ValidateOperator();
+            ConsoleKeyInfo @operator = Validations.ValidateOperator();
             Console.Clear();
 
             Console.Write("Enter second operand and press enter: ");
-            double secondOperand = UserInputValidation.ValidateOperand();
+            double secondOperand = Validations.ValidateOperand();
 
             DoCalculations(firstOperand, secondOperand, @operator);
-            // Continue calculating using last result
+
             ReCalculation.ReCalculate();
         }
     }

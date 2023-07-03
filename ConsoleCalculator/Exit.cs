@@ -2,10 +2,15 @@
 
 namespace ConsoleCalculator
 {
-    internal class ExitCalculator
-    {
-        // Exit the calculator
-        public static void CloseCalculator()
+    /// <summary>
+    /// 
+    /// </summary>
+    internal static class Exit
+    { 
+        /// <summary>
+        /// Reset or close calculator.
+        /// </summary>
+        public static void Exiting()
         {
             Console.Write("\n\n\tPerform a new Calculation\n\t\t Y/N ? ");
             ConsoleKeyInfo option = Console.ReadKey();
@@ -14,7 +19,7 @@ namespace ConsoleCalculator
             switch (option.Key)
             {
                 case ConsoleKey.Y:
-                    CalculatorDisplay.Main();
+                    Display.Main();
                     break;
                 case ConsoleKey.N:
                     Environment.Exit(0);
