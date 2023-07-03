@@ -3,12 +3,21 @@ using static ConsoleCalculator.Calculations;
 
 namespace ConsoleCalculator
 {
-    internal class ReCalculation
+    /// <summary>
+    /// Allows the user to continue calculating without resetting calculator.
+    /// </summary>
+    internal static class ReCalculation
     {
-        // Result of the previous calculation.
+        /// <summary>
+        /// First operand for a new calculation.
+        /// </summary>
         public static double Result { get; set; }
 
-        // Prompts the user to either continue calculating or exit the App.
+        /// <summary>
+        /// Perform a new calculation using the result of the
+        /// previous calculation as the first operand
+        /// for the new calculation.
+        /// </summary>
         public static void ReCalculate()
         {
             bool isRecalculating = true;
@@ -20,14 +29,14 @@ namespace ConsoleCalculator
                 if (option.Key == ConsoleKey.Add || option.Key == ConsoleKey.Subtract || option.Key == ConsoleKey.Multiply || option.Key == ConsoleKey.Divide)
                 {
                     double firstOperand = Result;
-                    double secondOperand = UserInputValidation.ValidateOperand();
+                    double secondOperand = Validations.ValidateOperand();
                     Console.Clear();
                     DoCalculations(firstOperand, secondOperand, option);
                 }
                 else
                 {
                     Console.Clear();
-                    ExitCalculator.CloseCalculator();
+                    Exit.Exiting();
                     isRecalculating = false;
                 }
             }

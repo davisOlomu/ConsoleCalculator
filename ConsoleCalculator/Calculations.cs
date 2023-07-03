@@ -4,7 +4,12 @@ namespace ConsoleCalculator
 {
     internal class Calculations
     {
-        // Calculations using basic mathematical operators(+,-,*,/)
+        /// <summary>
+        /// Perform calculation using the basic arithemetic operators
+        /// </summary>
+        /// <param name="firstOperand"></param>
+        /// <param name="secondOperand"></param>
+        /// <param name="operator"></param>
         public static void DoCalculations(double firstOperand, double secondOperand, ConsoleKeyInfo @operator)
         {
             double result = 0;
@@ -23,7 +28,7 @@ namespace ConsoleCalculator
                     Console.WriteLine($"{firstOperand} * {secondOperand} = ");
                     break;
                 case ConsoleKey.Divide:
-                    // Cannot divide by zero
+           
                     while (secondOperand == 0)
                     {
                         Console.WriteLine("Enter a non-zero divisor: ");
@@ -39,7 +44,6 @@ namespace ConsoleCalculator
             Console.WriteLine(Environment.NewLine);
             Console.Write(result);
 
-            // ReUse result for another calculation
             ReCalculation.Result = result;
         }
     }

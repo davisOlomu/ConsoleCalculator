@@ -3,9 +3,17 @@ using System.Threading;
 
 namespace ConsoleCalculator
 {
-    internal class UserInputValidation
+    /// <summary>
+    /// Ensures all inputs during calculation are in the correct format.
+    /// </summary>
+    internal static class Validations
     {
-        // Verify that user input is a valid arithemetic number.
+
+       /// <summary>
+       /// Ensures user input is a valid number.
+       /// </summary>
+       /// <param name="operand">represents user input</param>
+       /// <returns>A a valid number</returns>
         public static double ValidateOperand()
         {
             double operand;
@@ -25,7 +33,13 @@ namespace ConsoleCalculator
             Console.Clear();
             return operand;
         }
-        // Verify that user input is a valid mathematical opeartor.
+
+        /// <summary>
+        /// Ensures user input is a valid mathematical operator,
+        /// input must be either of these(+,/,*,-).
+        /// </summary>
+        /// <param name="@operator">represents user input</param>
+        /// <returns>A valid mathematical operator</returns>
         public static ConsoleKeyInfo ValidateOperator()
         {
             ConsoleKeyInfo @operator = Console.ReadKey();
