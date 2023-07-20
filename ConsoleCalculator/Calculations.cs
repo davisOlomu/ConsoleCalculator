@@ -2,45 +2,73 @@
 
 namespace ConsoleCalculator
 {
-    internal class Calculations
-    {
-        // Calculations using basic mathematical operators(+,-,*,/)
+    /// <summary>
+    /// Calculator engine.
+    /// </summary>
+    internal static class Calculations
+    {    
+        private static double _result;
+
+        /// <summary>
+        /// Perform calculation, using two operands and an operator.
+        /// </summary>
+        /// <param name="firstOperand"></param>
+        /// <param name="secondOperand"></param>
+        /// <param name="operator"></param>
         public static void DoCalculations(double firstOperand, double secondOperand, ConsoleKeyInfo @operator)
         {
-            double result = 0;
             switch (@operator.Key)
             {
                 case ConsoleKey.Add:
-                    result = firstOperand + secondOperand;
+                    _result = firstOperand + secondOperand;
                     Console.WriteLine($"{firstOperand} + {secondOperand} = ");
                     break;
                 case ConsoleKey.Subtract:
-                    result = firstOperand - secondOperand;
+                    _result = firstOperand - secondOperand;
                     Console.WriteLine($"{firstOperand} - {secondOperand} = ");
                     break;
                 case ConsoleKey.Multiply:
-                    result = firstOperand * secondOperand;
+                    _result = firstOperand * secondOperand;
                     Console.WriteLine($"{firstOperand} * {secondOperand} = ");
                     break;
                 case ConsoleKey.Divide:
-                    // Cannot divide by zero
                     while (secondOperand == 0)
                     {
-                        Console.WriteLine("Enter a non-zero divisor: ");
-                        Console.Write("Re-Enter number and press enter: \n\n");
-                        Console.Write($"{firstOperand}/");
-                        Console.Clear();
-                        secondOperand = double.Parse(Console.ReadLine());
+                        secondOperand = Validations.ValidateDivisor(firstOperand, secondOperand);
                     }
-                    result = firstOperand / secondOperand;
+                    _result = firstOperand / secondOperand;
                     Console.WriteLine($"{firstOperand} / {secondOperand} = ");
                     break;
             }
-            Console.WriteLine(Environment.NewLine);
-            Console.Write(result);
+            Console.Write("\n" + _result);
+        }
 
-            // ReUse result for another calculation
-            ReCalculation.Result = result;
+        /// <summary>
+        /// Perform another calculation using the result
+        /// of the previous calculation.
+        /// </summary>
+        public static void ReCalculate()
+        {
+            bool isRecalculating = true;
+
+            while (isRecalculating)
+            {
+                ConsoleKeyInfo @operator = Console.ReadKey();
+
+                if (@operator.Key == ConsoleKey.Add || @operator.Key == ConsoleKey.Subtract || @operator.Key == ConsoleKey.Multiply || @operator.Key == ConsoleKey.Divide)
+                {
+                    double firstOperand = _result;
+                    double secondOperand = Validations.ValidateOperand();
+                    Console.Clear();
+                    DoCalculations(firstOperand, secondOperand, @operator);
+                }
+                else
+                {
+                    Console.Clear();
+                    ExitCalculator.CloseCalculator();
+                    isRecalculating = false;
+                }
+            }
         }
     }
 }

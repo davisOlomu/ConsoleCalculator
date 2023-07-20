@@ -3,6 +3,9 @@ using static ConsoleCalculator.Calculations;
 
 namespace ConsoleCalculator
 {
+    /// <summary>
+    /// App Entry Point.
+    /// </summary>
     public class CalculatorDisplay
     {
         public static void Main()
@@ -11,19 +14,19 @@ namespace ConsoleCalculator
             Console.SetWindowSize(45, 25);
 
             Console.Write("Enter first operand and press enter: ");
-            double firstOperand = UserInputValidation.ValidateOperand();
+            double firstOperand = Validations.ValidateOperand();
             Console.Clear();
 
             Console.Write("Enter operator: ");
-            ConsoleKeyInfo @operator = UserInputValidation.ValidateOperator();
+            ConsoleKeyInfo @operator = Validations.ValidateOperator();
             Console.Clear();
 
             Console.Write("Enter second operand and press enter: ");
-            double secondOperand = UserInputValidation.ValidateOperand();
+            double secondOperand = Validations.ValidateOperand();
+            Console.Clear();
 
             DoCalculations(firstOperand, secondOperand, @operator);
-            // Continue calculating using last result
-            ReCalculation.ReCalculate();
-        }
+            ReCalculate();
+        }      
     }
 }

@@ -2,9 +2,14 @@
 
 namespace ConsoleCalculator
 {
-    internal class ExitCalculator
+    /// <summary>
+    /// 
+    /// </summary>
+    internal static class ExitCalculator
     {
-        // Exit the calculator
+        /// <summary>
+        /// 
+        /// </summary>
         public static void CloseCalculator()
         {
             Console.Write("\n\n\tPerform a new Calculation\n\t\t Y/N ? ");
