@@ -4,9 +4,9 @@ using static ConsoleCalculator.Calculations;
 namespace ConsoleCalculator
 {
     /// <summary>
-    /// UserInterface.
+    /// App Entry Point.
     /// </summary>
-    public class Display
+    public class CalculatorDisplay
     {
         public static void Main()
         {
@@ -23,10 +23,10 @@ namespace ConsoleCalculator
 
             Console.Write("Enter second operand and press enter: ");
             double secondOperand = Validations.ValidateOperand();
+            Console.Clear();
 
             DoCalculations(firstOperand, secondOperand, @operator);
-
-            ReCalculation.ReCalculate();
-        }
+            ReCalculate();
+        }      
     }
 }

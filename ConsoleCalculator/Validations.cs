@@ -4,46 +4,35 @@ using System.Threading;
 namespace ConsoleCalculator
 {
     /// <summary>
-    /// Ensures all inputs during calculation are in the correct format.
+    /// Check all user input.
     /// </summary>
     internal static class Validations
     {
-
-       /// <summary>
-       /// Ensures user input is a valid number.
-       /// </summary>
-       /// <param name="operand">represents user input</param>
-       /// <returns>A a valid number</returns>
+        /// <summary>
+        /// Ensure a valid numeral is entered.
+        /// </summary>
+        /// <returns>A valid numeral.</returns>
         public static double ValidateOperand()
         {
-            double operand;
-
-            if (double.TryParse(Console.ReadLine(), out operand))
-            {
-                return operand;
-            }
-            else
+            if (!double.TryParse(Console.ReadLine(), out double operand))
             {
                 Console.Clear();
                 Console.WriteLine("Wrong input!");
                 Console.Write("Enter a number: ");
                 Thread.Sleep(2500);
-                ValidateOperand();
+                operand = ValidateOperand();
+                Console.Clear();
             }
-            Console.Clear();
             return operand;
         }
 
         /// <summary>
-        /// Ensures user input is a valid mathematical operator,
-        /// input must be either of these(+,/,*,-).
+        /// Ensure a valid basic mathematical operator is entered(+,/,*,-).
         /// </summary>
-        /// <param name="@operator">represents user input</param>
-        /// <returns>A valid mathematical operator</returns>
+        /// <returns>A valid operator</returns>
         public static ConsoleKeyInfo ValidateOperator()
         {
             ConsoleKeyInfo @operator = Console.ReadKey();
-            Console.Write("\n");
 
             if (@operator.Key != ConsoleKey.Add && @operator.Key != ConsoleKey.Subtract && @operator.Key != ConsoleKey.Divide && @operator.Key != ConsoleKey.Multiply)
             {
@@ -51,10 +40,26 @@ namespace ConsoleCalculator
                 Console.WriteLine("Wrong input!");
                 Console.Write("Enter a mathematical Operator: ");
                 Thread.Sleep(2500);
-                ValidateOperator();
+                @operator = ValidateOperator();
+                Console.Clear();
             }
-            Console.Clear();
             return @operator;
+        }
+
+        /// <summary>
+        /// Ensure divisor is not zero.
+        /// </summary>
+        /// <param name="firstOperand"></param>
+        /// <param name="secondOperand"></param>
+        /// <returns></returns>
+        public static double ValidateDivisor(double firstOperand, double secondOperand)
+        {
+            Console.WriteLine("Enter a non-zero divisor: ");
+            Console.Write("Re-Enter number and press enter.\n\n");
+            Console.Write($"{firstOperand}/");
+            secondOperand = double.Parse(Console.ReadLine());
+            Console.Clear();
+            return secondOperand;
         }
     }
 }
