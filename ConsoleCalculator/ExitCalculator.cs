@@ -8,7 +8,7 @@ namespace ConsoleCalculator
     internal static class ExitCalculator
     {
         /// <summary>
-        /// 
+        /// Exit the program.
         /// </summary>
         public static void CloseCalculator()
         {

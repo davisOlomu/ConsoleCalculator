@@ -53,7 +53,7 @@ namespace ConsoleCalculator
 
             while (isRecalculating)
             {
-                ConsoleKeyInfo @operator = Console.ReadKey();
+                ConsoleKeyInfo @operator = Validations.ValidateOperator();
 
                 if (@operator.Key == ConsoleKey.Add || @operator.Key == ConsoleKey.Subtract || @operator.Key == ConsoleKey.Multiply || @operator.Key == ConsoleKey.Divide)
                 {

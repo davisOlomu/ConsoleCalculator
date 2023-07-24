@@ -14,14 +14,15 @@ namespace ConsoleCalculator
         /// <returns>A valid numeral.</returns>
         public static double ValidateOperand()
         {
-            if (!double.TryParse(Console.ReadLine(), out double operand))
+            double operand;
+            while (!(double.TryParse(Console.ReadLine(), out operand)))
             {
                 Console.Clear();
                 Console.WriteLine("Wrong input!");
-                Console.Write("Enter a number: ");
-                Thread.Sleep(2500);
-                operand = ValidateOperand();
+                Console.Write("Enter a valid number.");
+                Thread.Sleep(2000);
                 Console.Clear();
+                Console.Write("Enter operand: ");
             }
             return operand;
         }
@@ -34,14 +35,15 @@ namespace ConsoleCalculator
         {
             ConsoleKeyInfo @operator = Console.ReadKey();
 
-            if (@operator.Key != ConsoleKey.Add && @operator.Key != ConsoleKey.Subtract && @operator.Key != ConsoleKey.Divide && @operator.Key != ConsoleKey.Multiply)
+            while (@operator.Key != ConsoleKey.Add && @operator.Key != ConsoleKey.Subtract && @operator.Key != ConsoleKey.Divide && @operator.Key != ConsoleKey.Multiply)
             {
                 Console.Clear();
                 Console.WriteLine("Wrong input!");
-                Console.Write("Enter a mathematical Operator: ");
-                Thread.Sleep(2500);
-                @operator = ValidateOperator();
+                Console.Write("Enter a valid mathematical Operator.");
+                Thread.Sleep(2000);
                 Console.Clear();
+                Console.Write("Enter operator: ");
+                @operator = Console.ReadKey();
             }
             return @operator;
         }
