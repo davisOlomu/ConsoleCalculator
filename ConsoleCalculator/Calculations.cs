@@ -1,4 +1,5 @@
 ﻿using System;
+using Spectre.Console;
 
 namespace ConsoleCalculator
 {
@@ -6,7 +7,7 @@ namespace ConsoleCalculator
     /// Calculator engine.
     /// </summary>
     internal static class Calculations
-    {    
+    {
         private static double _result;
 
         /// <summary>
@@ -49,14 +50,13 @@ namespace ConsoleCalculator
         /// </summary>
         public static void ReCalculate()
         {
-            bool isRecalculating = true;
-
-            while (isRecalculating)
+            // Infinite loop
+            while (true)
             {
-                ConsoleKeyInfo @operator = Validations.ValidateOperator();
-
-                if (@operator.Key == ConsoleKey.Add || @operator.Key == ConsoleKey.Subtract || @operator.Key == ConsoleKey.Multiply || @operator.Key == ConsoleKey.Divide)
+                if (AnsiConsole.Confirm("\ndo you want to continue?"))
                 {
+                    Console.Clear();
+                    ConsoleKeyInfo @operator = Validations.ValidateOperator();
                     double firstOperand = _result;
                     double secondOperand = Validations.ValidateOperand();
                     Console.Clear();
@@ -64,10 +64,10 @@ namespace ConsoleCalculator
                 }
                 else
                 {
-                    Console.Clear();
                     ExitCalculator.CloseCalculator();
-                    isRecalculating = false;
+                    break;
                 }
+              
             }
         }
     }

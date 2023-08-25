@@ -1,5 +1,6 @@
 ﻿using System;
 using static ConsoleCalculator.Calculations;
+using Spectre.Console;
 
 namespace ConsoleCalculator
 {
@@ -13,20 +14,20 @@ namespace ConsoleCalculator
             Console.Title = "Console Calculator";
             Console.SetWindowSize(45, 25);
 
-            Console.Write("Enter first operand and press enter: ");
+            AnsiConsole.Write(new Markup("[blue]Enter first operand and press enter: [/]"));
             double firstOperand = Validations.ValidateOperand();
             Console.Clear();
 
-            Console.Write("Enter operator: ");
+            AnsiConsole.Write(new Markup("[blue]Enter operator: [/]"));
             ConsoleKeyInfo @operator = Validations.ValidateOperator();
             Console.Clear();
 
-            Console.Write("Enter second operand and press enter: ");
+            AnsiConsole.Write(new Markup("[blue]Enter second operand and press enter: [/]"));
             double secondOperand = Validations.ValidateOperand();
             Console.Clear();
 
             DoCalculations(firstOperand, secondOperand, @operator);
             ReCalculate();
-        }      
+        }              
     }
 }

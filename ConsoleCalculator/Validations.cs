@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Spectre.Console;
 
 namespace ConsoleCalculator
 {
@@ -18,11 +19,11 @@ namespace ConsoleCalculator
             while (!(double.TryParse(Console.ReadLine(), out operand)))
             {
                 Console.Clear();
-                Console.WriteLine("Wrong input!");
-                Console.Write("Enter a valid number.");
+                AnsiConsole.Write(new Markup("[red]Wrong input![/]\n"));
+                AnsiConsole.Write(new Markup("[red]Enter a valid number..[/]"));
                 Thread.Sleep(2000);
                 Console.Clear();
-                Console.Write("Enter operand: ");
+                AnsiConsole.Write(new Markup("[blue]Enter operand: [/]"));
             }
             return operand;
         }
@@ -38,11 +39,11 @@ namespace ConsoleCalculator
             while (@operator.Key != ConsoleKey.Add && @operator.Key != ConsoleKey.Subtract && @operator.Key != ConsoleKey.Divide && @operator.Key != ConsoleKey.Multiply)
             {
                 Console.Clear();
-                Console.WriteLine("Wrong input!");
-                Console.Write("Enter a valid mathematical Operator.");
+                AnsiConsole.Write(new Markup("[red]Wrong input![/]\n"));
+                AnsiConsole.Write(new Markup("[red]Enter a valid mathematical Operator.[/]"));
                 Thread.Sleep(2000);
                 Console.Clear();
-                Console.Write("Enter operator: ");
+                AnsiConsole.Write(new Markup("[blue]Enter operator: [/]"));
                 @operator = Console.ReadKey();
             }
             return @operator;
@@ -56,9 +57,9 @@ namespace ConsoleCalculator
         /// <returns></returns>
         public static double ValidateDivisor(double firstOperand, double secondOperand)
         {
-            Console.WriteLine("Enter a non-zero divisor: ");
-            Console.Write("Re-Enter number and press enter.\n\n");
-            Console.Write($"{firstOperand}/");
+            AnsiConsole.Write(new Markup("[red]Enter a non-zero divisor: [/]\n"));
+            AnsiConsole.Write(new Markup("[red]Re-Enter number and press enter.\n\n[/]"));
+            AnsiConsole.Write(new Markup($"[blue]{firstOperand }/[/]"));
             secondOperand = double.Parse(Console.ReadLine());
             Console.Clear();
             return secondOperand;
